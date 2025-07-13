@@ -4,7 +4,7 @@ import pandas as pd
 import folium
 from streamlit_folium import st_folium # Importar st_folium
 
-# Aplicar estilo de blog con CSS
+# Especificaciones de formato para que sea vea tipo blog con los colores deseados
 st.markdown("""
 <style>
     /* Fondo base chocolate claro y forzar esquema claro */
