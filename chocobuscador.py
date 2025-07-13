@@ -400,26 +400,51 @@ if selected_page == "Página 1: Buscador":
             for index, row in current_filtered_frame.iterrows():
                 nombre_producto = row["producto"]
                 imagen_producto = row["Foto"]
+    
+            # Inicia una tarjeta de producto
+                st.markdown(f"""
+                <div style='background-color: rgba(255, 255, 255, 0.95); 
+                            padding: 25px; 
+                            margin: 30px 0; 
+                            border-radius: 20px; 
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.15);'>
+        
+                    <h3 style='color: #4e342e; font-family: "Trebuchet MS", "Comic Sans MS", cursive; text-align: center;'>
+                        🍫 {nombre_producto}
+                    </h3>
+                """, unsafe_allow_html=True)
 
-                st.write(f"**Producto:** {nombre_producto}")
-
+                # Imagen del producto
                 if pd.notna(imagen_producto) and isinstance(imagen_producto, str):
-                     st.image(imagen_producto, width=300)
+                    st.image(imagen_producto, width=320)
                 else:
-                     st.write("  Imagen no disponible")
+                st.markdown("<p style='text-align: center; color: #8d6e63;'>Imagen no disponible</p>", unsafe_allow_html=True)
 
+                # Precios disponibles
                 precio_columnas = current_filtered_frame.columns[16:31]
-                precios_encontrados = False
-                st.write("**Precios disponibles:**")
-                for col in precio_columnas:
-                    precio = row[col]
-                    if pd.notna(precio):
-                        st.write(f"- {col.strip()}: {precio}")
-                        precios_encontrados = True
+                precios_disponibles = [
+                    f"<li><strong>{col.strip()}</strong>: S/ {row[col]:.2f}</li>"
+                    for col in precio_columnas if pd.notna(row[col])
+                ]
 
-                if not precios_encontrados:
-                    st.write("  No se encontraron precios disponibles para este producto en las ubicaciones listadas.")
-                st.markdown("---") # Separator between products
+                if precios_disponibles:
+                    precios_html = "<ul style='color:#5d4037; font-size: 17px;'>" + "".join(precios_disponibles) + "</ul>"
+                    st.markdown(f"""
+                    <div style='margin-top: 15px;'>
+                        <p style='font-size: 18px; font-weight: bold; color: #6d4c41;'>Precios disponibles:</p>
+                        {precios_html}
+                    </div>
+                    </div> <!-- Fin de tarjeta -->
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown("""
+                    <div style='margin-top: 15px; color:#8d6e63; font-size:16px;'>No se encontraron precios disponibles para este producto.</div>
+                    </div> <!-- Fin de tarjeta -->
+                    """, unsafe_allow_html=True)
+
+                # Separador entre tarjetas (opcional)
+                st.markdown("<hr style='border: none; height: 1px; background-color: #ccc;'>", unsafe_allow_html=True)
+
 
 
             # Create and display the map after product details
