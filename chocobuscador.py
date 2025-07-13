@@ -471,7 +471,7 @@ elif selected_page == "Página 2: Ámate con chocolate":
     # Franja decorativa superior
     st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
 
-    # Título bonito con fondo blanco transparente
+    # Título bonito con fondo blanco transparente (todo en una línea visualmente)
     st.markdown("""
     <div style='text-align: center; margin-top: 20px;'>
         <h1 style='background-color: rgba(255, 255, 255, 0.9); 
@@ -481,7 +481,10 @@ elif selected_page == "Página 2: Ámate con chocolate":
                    box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
                    color: #4e342e; 
                    font-family: "Trebuchet MS", "Comic Sans MS", cursive;
-                   font-size: 38px;'>
+                   font-size: 34px;
+                   white-space: nowrap;
+                   overflow: hidden;
+                   text-overflow: ellipsis;'>
             ¿Por qué comer chocolate es bueno?
         </h1>
     </div>
