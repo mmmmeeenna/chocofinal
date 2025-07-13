@@ -7,10 +7,12 @@ from streamlit_folium import st_folium # Importar st_folium
 # Aplicar estilo de blog con CSS
 st.markdown("""
 <style>
-    /* Fondo base chocolate claro */
+    /* Fondo base chocolate claro y forzar esquema claro */
     .stApp {
         background-color: #fff8e1;
         font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
+        color: #4e342e !important; /* Color de texto por defecto */
+        color-scheme: light !important; /* Forzar modo claro en navegadores que usan dark mode */
     }
 
     /* Franja superior con imagen decorativa */
