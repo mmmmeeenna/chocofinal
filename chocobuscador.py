@@ -146,7 +146,6 @@ selected_page = st.sidebar.radio("Ir a:", pages)
 
 # Contenido de las páginas
 if selected_page == "Página 1: Buscador":
-    st.title("Buscador de Chocolates 🍫")
     st.write("¡Encuentra tu chocolate ideal en el campus PUCP!")
 
     # Question 1
