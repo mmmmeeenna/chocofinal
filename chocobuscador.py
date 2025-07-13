@@ -79,25 +79,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Franja decorativa superior
-st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
-
-# Título principal después del banner
-st.markdown("""
-<div style='text-align: center; margin-top: 20px; margin-bottom: 10px;'>
-    <h1 style='background-color: rgba(255, 255, 255, 0.9); 
-               display: inline-block; 
-               padding: 10px 25px; 
-               border-radius: 15px; 
-               box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
-               color: #4e342e; 
-               font-family: "Trebuchet MS", "Comic Sans MS", cursive;
-               font-size: 38px;'>
-        🍫 Buscador de Chocolates
-    </h1>
-</div>
-""", unsafe_allow_html=True)
-
 # Cargar y preparar los datos
 @st.cache_data
 def load_data():
@@ -147,6 +128,25 @@ selected_page = st.sidebar.radio("Ir a:", pages)
 # Contenido de las páginas
 if selected_page == "Página 1: Buscador":
     st.write("¡Encuentra tu chocolate ideal en el campus PUCP!")
+
+    # Franja decorativa superior
+    st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
+
+    # Título principal después del banner
+    st.markdown("""
+    <div style='text-align: center; margin-top: 20px; margin-bottom: 10px;'>
+        <h1 style='background-color: rgba(255, 255, 255, 0.9); 
+                   display: inline-block; 
+                   padding: 10px 25px; 
+                   border-radius: 15px; 
+                   box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+                   color: #4e342e; 
+                   font-family: "Trebuchet MS", "Comic Sans MS", cursive;
+                   font-size: 38px;'>
+            🍫 Buscador de Chocolates
+        </h1>
+    </div>
+    """, unsafe_allow_html=True)
 
     # Question 1
     with st.container():
