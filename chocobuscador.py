@@ -401,18 +401,18 @@ if selected_page == "Página 1: Buscador":
                 nombre_producto = row["producto"]
                 imagen_producto = row["Foto"]
     
-            # Inicia una tarjeta de producto
+            # Tarjeta del producto completa
                 st.markdown(f"""
-                <div style='background-color: rgba(255, 255, 255, 0.95); 
-                            padding: 25px; 
-                            margin: 30px 0; 
-                            border-radius: 20px; 
-                            box-shadow: 0 4px 15px rgba(0,0,0,0.15);'>
-        
-                    <h3 style='color: #4e342e; font-family: "Trebuchet MS", "Comic Sans MS", cursive; text-align: center;'>
-                        🍫 {nombre_producto}
-                    </h3>
-                """, unsafe_allow_html=True)
+            <div style='background-color: rgba(255, 255, 255, 0.95); 
+                        padding: 25px; 
+                        margin: 30px 0; 
+                        border-radius: 20px; 
+                        box-shadow: 0 4px 15px rgba(0,0,0,0.15);'>
+
+                <h3 style='color: #4e342e; font-family: "Trebuchet MS", "Comic Sans MS", cursive; text-align: center;'>
+                    🍫 {nombre_producto}
+                </h3>
+            """, unsafe_allow_html=True)
 
                 # Imagen del producto
                 if pd.notna(imagen_producto) and isinstance(imagen_producto, str):
