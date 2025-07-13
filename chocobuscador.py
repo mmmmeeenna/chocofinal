@@ -141,7 +141,7 @@ st.sidebar.image(
     
 # Estructurar la aplicación con un sidebar y definir las páginas
 st.sidebar.title("Navegación")
-pages = ("Página 1: Buscador", "Página 2", "Página 3")
+pages = ("Página 1: Buscador", "Página 2: Ámate con chocolate", "Página 3")
 selected_page = st.sidebar.radio("Ir a:", pages)
 
 # Contenido de las páginas
@@ -470,9 +470,64 @@ if q1_answer == 'Sí':
         else:
             st.info("Lo siento, no se encontraron productos que coincidan con todas tus preferencias.")
 
-elif selected_page == "Página 2":
-    st.title("Página 2")
-    st.write("Este es el contenido de la página 2. Puedes añadir más elementos aquí.")
+elif selected_page == "Ámate con Chocolate":
+    # Franja decorativa superior
+    st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
+
+    # Título bonito con fondo blanco transparente
+    st.markdown("""
+    <div style='text-align: center; margin-top: 20px;'>
+        <h1 style='background-color: rgba(255, 255, 255, 0.9); 
+                   display: inline-block; 
+                   padding: 15px 35px; 
+                   border-radius: 15px; 
+                   box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+                   color: #4e342e; 
+                   font-family: "Trebuchet MS", "Comic Sans MS", cursive;
+                   font-size: 38px;'>
+            ☕️ ¿Por qué comer chocolate es bueno?
+        </h1>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Imagen del monstruo come galletas comiendo
+    st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/mounstro%20comiendo.png", width=250)
+
+    # Texto explicativo con citas
+    st.markdown("""
+    <div style='background-color: rgba(255,255,255,0.92); padding: 30px; border-radius: 20px;'>
+    <p style='font-size: 20px; color: #5d4037;'>
+    El chocolate no solo es delicioso, sino que también tiene <strong>efectos positivos en nuestro cerebro</strong>. 
+    De acuerdo con <em>National Geographic</em> (2023), el chocolate:
+    </p>
+    <ul style='font-size: 18px; color: #4e342e;'>
+        <li><strong>Activa la serotonina</strong>, mejorando nuestro estado de ánimo y provocando sensaciones de bienestar.</li>
+        <li><strong>Genera deseo</strong>, ya que activa regiones del cerebro relacionadas con el placer y la motivación.</li>
+        <li><strong>Produce placer</strong> gracias a compuestos como la <em>teobromina</em> y la <em>feniletilamina</em>.</li>
+        <li><strong>Mejora el flujo sanguíneo</strong> gracias a los flavanoles presentes en el cacao oscuro.</li>
+    </ul>
+    <p style='font-size: 18px; color: #6d4c41;'>
+    Cuanto más oscuro el chocolate, más beneficios contiene ✨. 
+    </p>
+    <p style='font-size: 16px; color: #8d6e63;'>
+    Fuente: National Geographic (2023). 
+    <a href='https://www.nationalgeographicla.com/ciencia/2023/09/que-efecto-produce-el-chocolate-en-el-cerebro' target='_blank'>
+    Qué efecto produce el chocolate en el cerebro
+    </a>
+    </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Carrusel de imágenes con chocolate
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/torta.png", caption="Torta de chocolate", use_container_width=True)
+    with col2:
+        st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/brownie.png", caption="Brownie", use_container_width=True)
+    with col3:
+        st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/chocolatito.png", caption="Chocolate en barra", use_container_width=True)
+
 
 elif selected_page == "Página 3":
     st.title("Página 3")
