@@ -161,11 +161,11 @@ if q1_answer == 'Sí':
     )
 
         # Question path based on Q2 answer
-        if q2_answer == 'Solo de chocolate':
-            q_ad_answer = st.radio(
-                "¿Prefieres chocolates con maní o almendras?",
-                ('Con maní', 'Sin maní', 'Con Almendras', 'Sin Almendras')
-            )
+    if q2_answer == 'Solo de chocolate':
+        q_ad_answer = st.radio(
+            "¿Prefieres chocolates con maní o almendras?",
+            ('Con maní', 'Sin maní', 'Con Almendras', 'Sin Almendras')
+        )
 
             # Subsequent question for "Solo de chocolate" path
             q2_1_answer = st.radio(
