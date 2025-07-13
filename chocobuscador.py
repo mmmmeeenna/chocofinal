@@ -7,13 +7,13 @@ from streamlit_folium import st_folium # Importar st_folium
 # Aplicar estilo de blog con CSS
 st.markdown("""
 <style>
-    /* Fondo base blanco */
+    /* Fondo base chocolate claro */
     .stApp {
-        background-color: #fff8e1;;
+        background-color: #fff8e1;
         font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
     }
 
-    /* Franja superior con imagen */
+    /* Franja superior con imagen decorativa */
     .top-banner {
         background-image: url('https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/FONDO.png');
         background-size: cover;
@@ -22,6 +22,28 @@ st.markdown("""
         border-bottom: 6px solid #6d4c41;
     }
 
+    /* Contenedor para el título encima del banner */
+    .banner-title-box {
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+    }
+
+    .banner-title-content {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 15px 30px;
+        border-radius: 15px;
+        color: #4e342e;
+        font-size: 36px;
+        font-weight: bold;
+        font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
+        box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Estilo del sidebar */
     [data-testid="stSidebar"] {
         background-color: #fff3e0;
         background-image: linear-gradient(to bottom, #fff3e0, #fbe9e7);
@@ -29,6 +51,7 @@ st.markdown("""
         padding: 15px;
     }
 
+    /* Cuadro de contenido tipo glassmorphism */
     .glass-box {
         background-color: rgba(255, 255, 255, 0.92);
         padding: 60px 40px 50px 40px;
@@ -39,6 +62,7 @@ st.markdown("""
         text-align: center;
     }
 
+    /* Títulos principales */
     h1 {
         color: #4e342e;
         font-size: 42px;
@@ -46,6 +70,7 @@ st.markdown("""
         margin-bottom: 20px;
     }
 
+    /* Preguntas del cuestionario */
     .pregunta {
         font-size: 26px;
         font-weight: bold;
@@ -54,6 +79,7 @@ st.markdown("""
         text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
     }
 
+    /* Estilo de botones */
     .stButton>button {
         background-color: #6d4c41;
         color: white;
@@ -72,9 +98,19 @@ st.markdown("""
         transform: scale(1.05);
     }
 </style>
+""", unsafe_allow_html=True)
 
-<div class="top-banner"></div>
-""", unsafe_allow_html=True) 
+# Franja decorativa superior
+st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
+
+# Título encima de la franja
+st.markdown("""
+<div class="banner-title-box">
+    <div class="banner-title-content">
+        Buscador de Chocolates 🍫
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Cargar y preparar los datos
 @st.cache_data
