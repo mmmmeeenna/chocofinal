@@ -167,35 +167,35 @@ if q1_answer == 'Sí':
             ('Con maní', 'Sin maní', 'Con Almendras', 'Sin Almendras')
         )
 
-            # Subsequent question for "Solo de chocolate" path
-            q2_1_answer = st.radio(
-                "¿Deseas comer chocolate con leche, blanco o puro (mayor porcentaje de cacao)?",
-                ('Con leche', 'Blanco', 'Puro')
-            )
+    # Subsequent question for "Solo de chocolate" path
+        q2_1_answer = st.radio(
+            "¿Deseas comer chocolate con leche, blanco o puro (mayor porcentaje de cacao)?",
+            ('Con leche', 'Blanco', 'Puro')
+        )
 
-        elif q2_answer == 'Hecho en su mayoría de chocolate':
-            q2_2_answer = st.radio(
-                "¿Cuál te llama más la atención: Galleta, Keke u otro postre?",
-                ('Galleta', 'Keke', 'Otro postre')
-            )
+    elif q2_answer == 'Hecho en su mayoría de chocolate':
+        q2_2_answer = st.radio(
+            "¿Cuál te llama más la atención: Galleta, Keke u otro postre?",
+            ('Galleta', 'Keke', 'Otro postre')
+        )
 
-        elif q2_answer == 'Con acentos de chocolate':
-            acentos_tipo_answer = st.radio(
-                "¿Prefieres un keke o una galleta con acentos de chocolate?",
-                ('Keke', 'Galleta')
-            )
+    elif q2_answer == 'Con acentos de chocolate':
+        acentos_tipo_answer = st.radio(
+            "¿Prefieres un keke o una galleta con acentos de chocolate?",
+            ('Keke', 'Galleta')
+        )
 
-            # Subsequent questions based on acentos_tipo_answer
-            if acentos_tipo_answer == 'Keke':
-                keke_acentos_subtipo_answer = st.radio(
-                    "¿Prefieres tu keke con chispas o bañado en chocolate?",
-                    ('Con chispas', 'Bañado')
-                )
-            elif acentos_tipo_answer == 'Galleta':
-                galleta_acentos_subtipo_answer = st.radio(
-                    "¿Prefieres tu galleta con chispas, bañada o rellena de chocolate?",
-                    ('Con chispas', 'Bañada', 'Rellena')
-                )
+    # Subsequent questions based on acentos_tipo_answer
+        if acentos_tipo_answer == 'Keke':
+            keke_acentos_subtipo_answer = st.radio(
+                "¿Prefieres tu keke con chispas o bañado en chocolate?",
+                ('Con chispas', 'Bañado')
+            )
+        elif acentos_tipo_answer == 'Galleta':
+            galleta_acentos_subtipo_answer = st.radio(
+                "¿Prefieres tu galleta con chispas, bañada o rellena de chocolate?",
+                ('Con chispas', 'Bañada', 'Rellena')
+            )
     elif q1_answer == 'No':
         st.write("Ok, quizás en otro momento. ¡Adiós!")
 
