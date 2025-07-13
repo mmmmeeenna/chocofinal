@@ -482,7 +482,7 @@ elif selected_page == "Página 2: Ámate con chocolate":
                    color: #4e342e; 
                    font-family: "Trebuchet MS", "Comic Sans MS", cursive;
                    font-size: 38px;'>
-            ☕️ ¿Por qué comer chocolate es bueno?
+             ¿Por qué comer chocolate es bueno?
         </h1>
     </div>
     """, unsafe_allow_html=True)
