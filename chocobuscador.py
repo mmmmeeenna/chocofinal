@@ -9,7 +9,7 @@ st.markdown("""
 <style>
     /* Fondo base chocolate claro y forzar esquema claro */
     .stApp {
-        background-color: #6B514B;
+        background-color: #AD9682;
         font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
         color: #4e342e !important; /* Color de texto por defecto */
         color-scheme: light !important; /* Forzar modo claro en navegadores que usan dark mode */
