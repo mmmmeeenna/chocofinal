@@ -218,68 +218,67 @@ if selected_page == "Página 1: Buscador":
     elif q2_answer == 'Con acentos de chocolate': #Esta es la otra alternativa a la pregunta 2
         acentos_tipo_answer = st.radio(
             "¿Prefieres un keke o una galleta con acentos de chocolate?",
-            ('Keke', 'Galleta') #Se puede responder solo con estos formatos de alimento porque no hay un "postre" asignado pra 
+            ('Keke', 'Galleta') #Se puede responder solo con estos formatos de alimento porque no hay un "postre" que no sea en su mayoría de chocolate
         )
 
-    # Subsequent questions based on acentos_tipo_answer
+    #Estas preguntas son las preguntas que filtran a los kekes con acentos de chocolate según si tienen chispas o son un keke bañado ej. gansito
         if acentos_tipo_answer == 'Keke':
             keke_acentos_subtipo_answer = st.radio(
                 "¿Prefieres tu keke con chispas o bañado en chocolate?",
                 ('Con chispas', 'Bañado')
-            )
+            )#De igual manera con las galletas con acentos
         elif acentos_tipo_answer == 'Galleta':
             galleta_acentos_subtipo_answer = st.radio(
                 "¿Prefieres tu galleta con chispas, bañada o rellena de chocolate?",
                 ('Con chispas', 'Bañada', 'Rellena')
             )
 
-    # Implementar la lógica de filtrado basada en las selecciones de streamlit
-    # Inicializar el DataFrame filtrado con el original antes de aplicar filtros
+    #Esta variable es necesaria antes de iniciar con la filtración porque en esta se copian la información que dan los usuarios
     current_filtered_frame = chocoframe.copy()
 
-
+#Si se responde que se quiere comer chocolate
     if q1_answer == 'Sí':
-        # Filtering based on the second question
+        #Y que se quiere comer un producto "solo de chocolate"
         if q2_answer == 'Solo de chocolate':
-            col_solo_chocolate = 'barra de chocolate'
+            col_solo_chocolate = 'barra de chocolate' #se buscará en la columna de la base de datos que indica si es o no un producto hecho solo de chocolate (barras/lentejitas)
             if col_solo_chocolate in current_filtered_frame.columns:
-                current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_solo_chocolate] == True].copy()
+                current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_solo_chocolate] == True].copy() #Si se da la condición, que el producto tenga el valor TRUE dentro de la columna especificada, significa que este producto tiene la característica por eso se copia a la variable inicial
             else:
-                st.warning(f"Advertencia: Columna '{col_solo_chocolate}' no encontrada para filtrar.")
+                st.warning(f"Advertencia: Columna '{col_solo_chocolate}' no encontrada para filtrar.") #Este else nunca se dará, porque si existe dentro de la base de datos, existe ahí por cuestiones de orden, para que cada if tenga su else 
 
-            # Filtering based on the maní/almendras question (Q_AD)
-            if not current_filtered_frame.empty and q_ad_answer is not None: # Add check for q_ad_answer
-                if q_ad_answer == "Con maní":
+            #Aquí verifica que se haya respondido la pregunta anterior y que se hayan guardado las respuestas en la variable inicial 
+            if not current_filtered_frame.empty and q_ad_answer is not None: 
+                if q_ad_answer == "Con maní": #si la respuesta en la pregunta de advertencia fue "con maní" se realizará el siguiente procedimeinto:
+                    col_mani = 'maní' #aquí define en que columna de la base de datos buscará la info
+                    if col_mani in current_filtered_frame.columns:
+                        current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_mani] == True].copy() #Si se cumple la condición, que sea True, se añade a la variable inicial
+                    else:
+                        st.warning(f"Advertencia: Columna '{col_mani}' no encontrada para filtrar.") #esto también está por cuestiones de orden 
+                elif q_ad_answer == "Sin maní": #aquí se repite la misma lógica de la pregunta anterior 
                     col_mani = 'maní'
                     if col_mani in current_filtered_frame.columns:
-                        current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_mani] == True].copy()
+                        current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_mani] == False].copy() #Solo que aquí la condición tiene que ser falsa para que se añada a la variable inicial 
                     else:
                         st.warning(f"Advertencia: Columna '{col_mani}' no encontrada para filtrar.")
-                elif q_ad_answer == "Sin maní":
-                    col_mani = 'maní'
-                    if col_mani in current_filtered_frame.columns:
-                        current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_mani] == False].copy()
-                    else:
-                        st.warning(f"Advertencia: Columna '{col_mani}' no encontrada para filtrar.")
-                elif q_ad_answer == "Con Almendras":
+                elif q_ad_answer == "Con Almendras":# se repite por la cantidad total de opciones que tiene una pregunta
                     col_almendras = 'almendras'
                     if col_almendras in current_filtered_frame.columns:
                         current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_almendras] == True].copy()
                     else:
                         st.warning(f"Advertencia: Columna '{col_almendras}' no encontrada para filtrar.")
-                elif q_ad_answer == "Sin Almendras":
+                elif q_ad_answer == "Sin Almendras": #listo, aquí acaban las opciones de la pregunta de advertencia sobre el contenido de nueces 
                     col_almendras = 'almendras'
                     if col_almendras in current_filtered_frame.columns:
                         current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_almendras] == False].copy()
                     else:
                         st.warning(f"Advertencia: Columna '{col_almendras}' no encontrada para filtrar.")
 
-            # Filtering based on the chocolate type question (Q2_1)
-            if not current_filtered_frame.empty and q2_1_answer is not None: # Add check for q2_1_answer
-                 if q2_1_answer == "Con leche":
-                    col_leche = 'chocolate con leche'
+            #Aquí verifica que se haya respondido la pregunta 2 y que se hayan guardado las respuestas en la variable inicial 
+            if not current_filtered_frame.empty and q2_1_answer is not None: 
+                 if q2_1_answer == "Con leche": #procedimiento a seguir si esta es la respuesta de la pregunta 2_1
+                    col_leche = 'chocolate con leche' #de esta columna rescatará la información 
                     if col_leche in current_filtered_frame.columns:
-                        current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_leche] == True].copy()
+                        current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_leche] == True].copy() #se añaden los productos que pasan el filtro a la variable inicial
                     else:
                         st.warning(f"Advertencia: Columna '{col_leche}' no encontrada para filtrar.")
                  elif q2_1_answer == "Blanco":
@@ -294,8 +293,9 @@ if selected_page == "Página 1: Buscador":
                         current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_puro] == True].copy()
                     else:
                         st.warning(f"Advertencia: Columna '{col_puro}' no encontrada para filtrar.")
+                        #Se ha repetido el proceso de copiar los productos que pasan el filtro a la variable inicial por cada opción que presenta la pregunta 2_1 que es una pregunta que dereiva de una elección anterior 
 
-
+#Ahora se seguirá el mismo procedimiento anterior para la otra opción de la pregunta 2 
         elif q2_answer == 'Hecho en su mayoría de chocolate':
             col_hecho_mayoria = 'producto hecho de chocolate'
             if col_hecho_mayoria in current_filtered_frame.columns:
@@ -303,8 +303,8 @@ if selected_page == "Página 1: Buscador":
             else:
                 st.warning(f"Advertencia: Columna '{col_hecho_mayoria}' no encontrada para filtrar.")
 
-            # Filtering based on the Galleta/Keke/Postre question (Q2_2)
-            if not current_filtered_frame.empty and q2_2_answer is not None: # Add check for q2_2_answer
+            #Se sigue filtrando según las información que se ha brindado y añadido a la variable inicial anteriormente 
+            if not current_filtered_frame.empty and q2_2_answer is not None: 
                 if q2_2_answer == "Galleta":
                     col_galleta = 'galleta'
                     if col_galleta in current_filtered_frame.columns:
@@ -325,23 +325,24 @@ if selected_page == "Página 1: Buscador":
                         current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_otro_postre] == True].copy()
                     else:
                         st.warning(f"Advertencia: Columna '{col_otro_postre}' no encontrada para filtrar.")
+                    #Los códigos de arriba indican el procedimiento a seguir de haberse marcado x opción en una pregunta aanterior 
 
 
-        elif q2_answer == 'Con acentos de chocolate':
+        elif q2_answer == 'Con acentos de chocolate': #Esta es la última rama grande que nace de la segunda pregunta 
             col_acentos = 'producto con chocolate'
             if col_acentos in current_filtered_frame.columns:
                 current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_acentos] == True].copy()
             else:
                 st.warning(f"Advertencia: Columna '{col_acentos}' no encontrada para filtrar.")
 
-            # Filtering based on the Keke or Galleta question (acentos_tipo)
+            # Y se hace exactamente el mismo procedimiento que en las otras respuestas a la pregunta 2, se añade la info a la variable inicial si se cumplen las condiciones 
             if not current_filtered_frame.empty and acentos_tipo_answer is not None: # Add check for acentos_tipo_answer
                 if acentos_tipo_answer == "Keke":
                     col_keke_acentos = 'keke'
                     if col_keke_acentos in current_filtered_frame.columns:
                         current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_keke_acentos] == True].copy()
                         if not current_filtered_frame.empty and keke_acentos_subtipo_answer is not None: # Add check for keke_acentos_subtipo_answer
-                             # Filtering based on the keke subtipo question (keke_acentos_subtipo)
+                             #Se hace un procedimiento similar a las preguntas que derivan de responder "Keke", las respuestas a esta pregunta se guardarán en la variable inicial 
                              if keke_acentos_subtipo_answer == "Con chispas":
                                  col_keke_chispas = 'con chispas'
                                  if col_keke_chispas in current_filtered_frame.columns:
@@ -358,13 +359,13 @@ if selected_page == "Página 1: Buscador":
                 else:
                     st.warning(f"Advertencia: Columna '{col_keke_acentos}' no encontrada para filtrar.")
 
-
+#Ahora sigue añadir la info recolectada de elegir "galleta" después de haber elegido que se quería un producto con acentos de chocolate 
             elif acentos_tipo_answer == "Galleta":
                 col_galleta_acentos = 'galleta'
                 if col_galleta_acentos in current_filtered_frame.columns:
                     current_filtered_frame = current_filtered_frame.loc[current_filtered_frame[col_galleta_acentos] == True].copy()
-                    if not current_filtered_frame.empty and galleta_acentos_subtipo_answer is not None: # Add check for galleta_acentos_subtipo_answer
-                         # Filtering based on the galleta subtipo question (galleta_acentos_subtipo)
+                    if not current_filtered_frame.empty and galleta_acentos_subtipo_answer is not None: 
+                         #Se sigue con el mismo procedimiento pero ahora con las opciones a la pregunta sobre el tipo de galleta que se desea"
                          if galleta_acentos_subtipo_answer == "Con chispas":
                              col_galleta_chispas = 'con chispas'
                              if col_galleta_chispas in current_filtered_frame.columns:
@@ -385,24 +386,27 @@ if selected_page == "Página 1: Buscador":
                                  st.warning(f"Advertencia: Columna '{col_rellena}' no encontrada para filtrar.")
                     else:
                          st.warning(f"Advertencia: Columna '{col_galleta_acentos}' no encontrada para filtrar.")
+                        # y listo! estos son todos los filtros posibles por los que se puede pasar para encontrar el producto deseado
 
     else:
-        st.info("Ok, quizás en otro momento. ¡Adiós!") # Display the "Goodbye" message
+        st.info("Ok, quizás en otro momento. ¡Adiós!") #Este mensaje aparece si no se quiere comer chocolate :c, acá acaba todo de marcarse esa opción 
 
 
-    # Mostrar los resultados (productos y mapa) usando elementos de Streamlit
-    if q1_answer == 'Sí': # Only display results if the user wants chocolate
+    #Aquí se muestran los resultados (productos y mapa) usando elementos de Streamlit
+    if q1_answer == 'Sí': #Si se responde que si se desea comer chocolate se mostrarán las opciones que cumplen según los filtros marcados 
         if not current_filtered_frame.empty:
-            # Add a count of available options
+            #Aquí se pone un texto que indica cuántas fueron las opciones, en total, que se encontraron 
             st.subheader(f"Se encontraron {len(current_filtered_frame)} opciones de chocolate que coinciden con tus preferencias:")
 
-            # Display product information first
+            #Se muestra la info de los productos con un bucle para cada opción de producto que haya pasado los filtros  
+
+            #Con este bucle se define de qué parte de la tabla de datos se extraerá la información que será mostrada de los productos 
             st.subheader("Detalles de los productos:")
             for index, row in current_filtered_frame.iterrows():
-                nombre_producto = row["producto"]
-                imagen_producto = row["Foto"]
+                nombre_producto = row["producto"] #acá se define que se extraerá la info de la columna "producto" de la base de datos
+                imagen_producto = row["Foto"] #acá se define que se extraerá la info de la columna "foto" 
 
-                # Inicia tarjeta de producto
+                #Se muestra la info del producto en formato tarjeta, como ya hay un bucle que define de dónde se extraerá el nombre del producto solo se pone entre corchetes esa la variable que corresponde a los nombres
                 st.markdown(f"""
                 <div style='background-color: rgba(255, 255, 255, 0.95); 
                             padding: 25px; 
@@ -410,24 +414,24 @@ if selected_page == "Página 1: Buscador":
                             border-radius: 20px; 
                             box-shadow: 0 4px 15px rgba(0,0,0,0.15);'>
                     <h3 style='color: #4e342e; font-family: "Trebuchet MS", "Comic Sans MS", cursive; text-align: center;'>
-                        🍫 {nombre_producto}
-                    </h3>
+                        🍫 {nombre_producto} 
+                    </h3>  
                 """, unsafe_allow_html=True)
 
-                # Imagen del producto
+                #Con este código se presenta la imagen en la página, se utilizan las variables definidas anteriormente 
                 if pd.notna(imagen_producto) and isinstance(imagen_producto, str):
                     st.image(imagen_producto, width=320)
                 else:
                     st.markdown("<p style='text-align: center; color: #8d6e63;'>Imagen no disponible</p>", unsafe_allow_html=True)
 
-                # Precios disponibles
+                #Acá se define de dónde sale la información de los precios 
                 precio_columnas = current_filtered_frame.columns[16:31]
                 precios_disponibles = [
                     f"<li><strong>{col.strip()}</strong>: S/ {row[col]:.2f}</li>"
                     for col in precio_columnas if pd.notna(row[col])
                 ]
 
-                if precios_disponibles:
+                if precios_disponibles: #Si encuentra precios, los mostrará con este código (si los encontrará a menos de que no exista un producto con las características deseadas)
                     precios_html = "<ul style='color:#5d4037; font-size: 17px;'>" + "".join(precios_disponibles) + "</ul>"
                     st.markdown(f"""
                     <div style='margin-top: 15px;'>
@@ -441,38 +445,41 @@ if selected_page == "Página 1: Buscador":
                     <div style='margin-top: 15px; color:#8d6e63; font-size:16px;'>No se encontraron precios disponibles para este producto.</div>
                     </div> <!-- cierre tarjeta -->
                     """, unsafe_allow_html=True)
+                    #aquí termina la tarjeta de cada producto que cumpla con las características deseadas según los filtros aplicados 
 
-                # Línea divisoria
+                #Línea divisoria
                 st.markdown("<hr style='border: none; height: 1px; background-color: #ccc;'>", unsafe_allow_html=True)
 
 
 
 
-            # Create and display the map after product details
+            #Ahora se pone un texto para presentar el mapa 
             st.subheader("Mapa de ubicaciones con productos disponibles:")
 
-            map_center = [-12.069, -77.08]
-            m = folium.Map(location=map_center, zoom_start=14)
+            map_center = [-12.069, -77.08] #Se definen las coordenadas (muy cerca a la PUCP) desde las que aparecerá el mapa
+            m = folium.Map(location=map_center, zoom_start=14) #Se hace bastante zoom 
 
-            location_columns = current_filtered_frame.columns[16:31]
+            location_columns = current_filtered_frame.columns[16:31] #Este código indica que solo se mostrarán las coordenadas de los lugares en donde se ha encontrado un producto que cumpla con las características indicadas 
 
             for col in location_columns:
                 location_name = col.strip()
-                location_info = chocotiendas[chocotiendas['Establecimiento'] == location_name]
+                location_info = chocotiendas[chocotiendas['Establecimiento'] == location_name] #Se define el nombre del lugar desde la columna indicada de la base de datos de las tiendas en donde se puede comprar el producto
 
-                if not location_info.empty:
+                if not location_info.empty: #si se encuentra la tienda en la base de datos, se tiene que rescatar la info de las columnas 'lat' y 'lon' cuyos valores son las coordenas de los establecimientos 
                     lat = location_info['lat'].iloc[0]
                     lon = location_info['lon'].iloc[0]
-                    horario = location_info['horario'].iloc[0]
+                    horario = location_info['horario'].iloc[0] # además se rescata la info del horario de atención desde la base de datos chocotiendas 
 
                     popup_content = f"<b>{location_name}</b><br>Horario: {horario}<br><br><b>Productos Disponibles:</b><br>"
-
+#se determina la info que irá dentro del POPUP en el mapa 
+#El siguiente código establece otra parte del PopUp en donde se determina el nombre y precio del producto
+                    #es un bucle que solo considera buscar la información de los productos resultado de la filtración 
                     products_at_location = False
                     for index, product_row in current_filtered_frame.iterrows():
-                        product_name = product_row["producto"]
+                        product_name = product_row["producto"] #se indica de dónde se extraerá la info
                         price = product_row[col]
 
-                        if pd.notna(price):
+                        if pd.notna(price): #inica que si la columna donde debe ir el precio no está vacía, se mostrará lo siguiente en el PopUp
                             popup_content += f"- {product_name}: {price}<br>"
                             products_at_location = True
 
@@ -481,23 +488,23 @@ if selected_page == "Página 1: Buscador":
                             location=[lat, lon],
                             popup=folium.Popup(popup_content, max_width=300),
                             icon=folium.Icon(color='green', icon='cutlery')
-                        ).add_to(m)
-                    # No need for an else here, as we only add markers for locations with products
+                        ).add_to(m)  #estas son las características del PopUp, su ubicación según las coordenadas extraídas de la base de datos y las características estéticas
 
                 else:
                     st.warning(f"Advertencia: Ubicación '{location_name}' no encontrada en el DataFrame chocotiendas.")
 
-            # Display the map using st_folium
-            st_folium(m, width=700, height=450) # Kept the adjusted height
+            #Aquí se muestra el mapa con el tamaño adecuado
+            st_folium(m, width=700, height=450) 
 
         else:
-            st.info("Lo siento, no se encontraron productos que coincidan con todas tus preferencias.")
-
+            st.info("Lo siento, no se encontraron productos que coincidan con todas tus preferencias.") #Este es el mensaje que se imprime de no haber resultados que coincidan con lo preferido por el usuario 
+            
+#Este código indica lo que sucederá si se elige ver la página 3
 elif selected_page == "Página 2: Ámate con chocolate":
-    # Franja decorativa superior
+    #Franja decorativa superior
     st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
 
-    # Título bonito con fondo blanco transparente (todo en una línea visualmente)
+    #Título bonito con fondo blanco transparente 
     st.markdown("""
     <div style='text-align: center; margin-top: 20px;'>
         <h1 style='background-color: rgba(255, 255, 255, 0.9); 
@@ -516,10 +523,10 @@ elif selected_page == "Página 2: Ámate con chocolate":
     </div>
     """, unsafe_allow_html=True)
 
-    # Imagen del monstruo come galletas comiendo
+    #Imagen del monstruo come galletas comiendo
     st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/mounstro%20comiendo.png", width=250)
 
-    # Texto explicativo con citas
+    #Info de chocolate
     st.markdown("""
     <div style='background-color: rgba(255,255,255,0.92); padding: 30px; border-radius: 20px;'>
     <p style='font-size: 20px; color: #5d4037;'>
@@ -542,9 +549,9 @@ elif selected_page == "Página 2: Ámate con chocolate":
     </a>
     </p>
     </div>
-    """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True) #se pone la info con este formato y no solo con un print para que pueda apreciarse en Streamlit 
 
-    # Carrusel de imágenes con chocolate
+    #Carrusel de imágenes con chocolate
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -554,12 +561,12 @@ elif selected_page == "Página 2: Ámate con chocolate":
     with col3:
         st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/chocolatito.png", caption="Chocolate en barra", use_container_width=True)
 
-
+#Este código indica lo que sucederá si se elige ver la página 3
 elif selected_page == "Página 3: Detrás del Chocolate":
-    # Franja decorativa superior
+    #Franja decorativa superior
     st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
 
-    # Título bonito con fondo blanco transparente
+    #Título bonito con fondo blanco transparente
     st.markdown("""
     <div style='text-align: center; margin-top: 20px;'>
         <h1 style='background-color: rgba(255, 255, 255, 0.9); 
@@ -575,7 +582,7 @@ elif selected_page == "Página 3: Detrás del Chocolate":
     </div>
     """, unsafe_allow_html=True)
 
-    # Imagen del monstruo cocinero centrada
+    #Imagen del monstruo cocinero en el centro
     st.markdown("""
     <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
         <img src="https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/mounstro%20cocinando%20cortado.png" 
@@ -584,7 +591,7 @@ elif selected_page == "Página 3: Detrás del Chocolate":
     </div>
     """, unsafe_allow_html=True)
 
-    # Primer video: Beneficios del chocolate
+    #Vídeo de beneficios del chocolate
     st.markdown("## 🍫 Beneficios del chocolate para la salud")
     st.video("https://www.youtube.com/watch?v=Lcw29cUuYSc")
     st.markdown("""
@@ -596,7 +603,7 @@ elif selected_page == "Página 3: Detrás del Chocolate":
     </div>
     """, unsafe_allow_html=True)
 
-    # Segundo video: Cómo se hace el chocolate
+    #Vídeos de cómo se prepara el chocolate
     st.markdown("## 🏭 ¿Cómo se hace el chocolate?")
     st.video("https://www.youtube.com/watch?v=J9G94d9QK08")
     st.markdown("""
