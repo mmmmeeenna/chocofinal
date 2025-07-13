@@ -111,8 +111,8 @@ def load_data():
 
     return chocoframe, chocotiendas
 
-# Cargar los datos usando la función cacheada
-chocoframe, chocotiendas = load_data()
+if selected_page == "Página 1: Buscador":
+    chocoframe, chocotiendas = load_data()
 
 # Imagen decorativa en el sidebar
 st.sidebar.image(
