@@ -121,12 +121,12 @@ if selected_page == "Página 1: Buscador":
 
     # Question 1
     with st.container():
-    st.markdown("""
-    <div style="padding: 25px; border-radius: 20px; background-color: #fff3e0; border: 2px dashed #bf360c; text-align: center;">
-        <h2 style="color: #bf360c;">⚠️ ADVERTENCIA ⚠️</h2>
-        <p style="font-size: 20px;">INGRESA A ESTA PÁGINA <strong>SI Y SOLO SI</strong> QUIERES COMER CHOCOLATE 🍫</p>
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown("""
+        <div style="padding: 25px; border-radius: 20px; background-color: #fff3e0; border: 2px dashed #bf360c; text-align: center;">
+            <h2 style="color: #bf360c;">⚠️ ADVERTENCIA ⚠️</h2>
+            <p style="font-size: 20px;">INGRESA A ESTA PÁGINA <strong>SI Y SOLO SI</strong> QUIERES COMER CHOCOLATE 🍫</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 q1_answer = st.radio(
     "¿Deseas comer chocolate?",
