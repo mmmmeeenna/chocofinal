@@ -27,8 +27,8 @@ st.markdown("""
     /* Estilo del sidebar */
     [data-testid="stSidebar"] {
         background-color: #6E5846;
-        background-image: linear-gradient(to bottom, #fff3e0, #fbe9e7);
-        border-right: 3px dashed #4e342e;
+        border-right: 3px dashed #AD9682;
+        color: white;  /* Para que el texto resalte */
         padding: 15px;
     }
 
