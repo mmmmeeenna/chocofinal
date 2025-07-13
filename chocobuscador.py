@@ -110,10 +110,7 @@ def load_data():
 
 
     return chocoframe, chocotiendas
-
-if selected_page == "Página 1: Buscador":
-    chocoframe, chocotiendas = load_data()
-
+    
 # Imagen decorativa en el sidebar
 st.sidebar.image(
     "https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/chocolates%20tres%20tipos.png",
@@ -124,6 +121,9 @@ st.sidebar.image(
 st.sidebar.title("Navegación")
 pages = ("Página 1: Buscador", "Página 2: Ámate con chocolate", "Página 3: Detrás del Chocolate")
 selected_page = st.sidebar.radio("Ir a:", pages) 
+
+if selected_page == "Página 1: Buscador":
+    chocoframe, chocotiendas = load_data()
 
 # Contenido de las páginas
 if selected_page == "Página 1: Buscador":
