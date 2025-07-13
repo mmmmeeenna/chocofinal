@@ -114,7 +114,7 @@ chocoframe, chocotiendas = load_data()
 # Imagen decorativa en el sidebar
 st.sidebar.image(
     "https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/chocolates%20tres%20tipos.png",
-    use_column_width=True
+    use_container_width=True
 )
     
 # Estructurar la aplicación con un sidebar y definir las páginas
