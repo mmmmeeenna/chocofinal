@@ -190,10 +190,10 @@ if selected_page == "Página 1: Buscador":
         """, unsafe_allow_html=True)
 
     # Question 2 (only if Q1 is 'Sí')
-    q2_answer = st.radio(
-        "¿Deseas comer sólo chocolate (en barra o lentejitas), un derivado hecho en su mayoría de chocolate o un derivado con acentos de chocolate?",
-        ('Solo de chocolate', 'Hecho en su mayoría de chocolate', 'Con acentos de chocolate')
-    )
+        q2_answer = st.radio(
+            "¿Deseas comer sólo chocolate (en barra o lentejitas), un derivado hecho en su mayoría de chocolate o un derivado con acentos de chocolate?",
+            ('Solo de chocolate', 'Hecho en su mayoría de chocolate', 'Con acentos de chocolate')
+        )
 
         # Question path based on Q2 answer
     if q2_answer == 'Solo de chocolate':
