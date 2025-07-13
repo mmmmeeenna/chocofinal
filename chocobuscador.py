@@ -231,9 +231,6 @@ if selected_page == "Página 1: Buscador":
                 "¿Prefieres tu galleta con chispas, bañada o rellena de chocolate?",
                 ('Con chispas', 'Bañada', 'Rellena')
             )
-    elif q1_answer == 'No':
-        st.write("Ok, quizás en otro momento. ¡Adiós!")
-
 
     # Implementar la lógica de filtrado basada en las selecciones de streamlit
     # Inicializar el DataFrame filtrado con el original antes de aplicar filtros
