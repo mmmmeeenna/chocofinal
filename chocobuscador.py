@@ -13,42 +13,13 @@ st.markdown("""
         font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
     }
 
-    /* Contenedor padre del banner y título */
-    .header-wrapper {
-        position: relative;
-        width: 100%;
-        height: 180px;
-        margin-bottom: 40px;
-    }
-
     /* Franja superior con imagen decorativa */
     .top-banner {
         background-image: url('https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/FONDO.png');
         background-size: cover;
         background-position: center;
-        width: 100%;
-        height: 100%;
+        height: 180px;
         border-bottom: 6px solid #6d4c41;
-
-    /* Contenedor para el título encima del banner */
-    .banner-title-box {
-        position: absolute;
-        top: 50px;
-        width: 100%;
-        text-align: center;
-        z-index: 10;
-    }
-
-    .banner-title-content {
-        display: inline-block;
-        background-color: rgba(255, 255, 255, 0.85);
-        padding: 15px 30px;
-        border-radius: 15px;
-        color: #4e342e;
-        font-size: 36px;
-        font-weight: bold;
-        font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
-        box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
     }
 
     /* Estilo del sidebar */
@@ -108,14 +79,22 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Franja decorativa superior
+st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
+
+# Título principal después del banner
 st.markdown("""
-<div class="header-wrapper">
-    <div class="top-banner"></div>
-    <div class="banner-title-box">
-        <div class="banner-title-content">
-            Buscador de Chocolates 🍫
-        </div>
-    </div>
+<div style='text-align: center; margin-top: 20px; margin-bottom: 10px;'>
+    <h1 style='background-color: rgba(255, 255, 255, 0.9); 
+               display: inline-block; 
+               padding: 10px 25px; 
+               border-radius: 15px; 
+               box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+               color: #4e342e; 
+               font-family: "Trebuchet MS", "Comic Sans MS", cursive;
+               font-size: 38px;'>
+        🍫 Buscador de Chocolates
+    </h1>
 </div>
 """, unsafe_allow_html=True)
 
