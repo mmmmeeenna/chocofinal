@@ -149,45 +149,45 @@ if selected_page == "Página 1: Buscador":
     st.write("¡Encuentra tu chocolate ideal en el campus PUCP!")
 
     # Question 1
-with st.container():
-    st.markdown("""
-    <div style="text-align: center; margin-bottom: -10px;">
-        <img src="https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/mounstrito.png"
-             alt="Monstruito come galletas"
-             style="width: 120px; height: auto; margin-bottom: -10px;" />
-    </div>
+    with st.container():
+        st.markdown("""
+        <div style="text-align: center; margin-bottom: -10px;">
+            <img src="https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/mounstrito.png"
+                 alt="Monstruito come galletas"
+                 style="width: 120px; height: auto; margin-bottom: -10px;" />
+        </div>
 
-    <div style="padding: 25px; border-radius: 20px; background-color: #fff3e0; border: 2px dashed #bf360c; text-align: center;">
-        <h2 style="color: #bf360c;">⚠️ ADVERTENCIA ⚠️</h2>
-        <p style="font-size: 20px;">INGRESA A ESTA PÁGINA <strong>SI Y SOLO SI</strong> QUIERES COMER CHOCOLATE 🍫</p>
-    </div>
-    """, unsafe_allow_html=True)    
+        <div style="padding: 25px; border-radius: 20px; background-color: #fff3e0; border: 2px dashed #bf360c; text-align: center;">
+            <h2 style="color: #bf360c;">⚠️ ADVERTENCIA ⚠️</h2>
+            <p style="font-size: 20px;">INGRESA A ESTA PÁGINA <strong>SI Y SOLO SI</strong> QUIERES COMER CHOCOLATE 🍫</p>
+        </div>
+        """, unsafe_allow_html=True)    
 
-q1_answer = st.radio(
-    "¿Deseas comer chocolate?",
-    ('Sí', 'No'),
-    index=0
-)
+    q1_answer = st.radio(
+        "¿Deseas comer chocolate?",
+        ('Sí', 'No'),
+        index=0
+    )
     # Initialize variables for answers in different paths
-q2_answer = None
-q_ad_answer = None
-q2_1_answer = None
-q2_2_answer = None
-acentos_tipo_answer = None
-keke_acentos_subtipo_answer = None
-galleta_acentos_subtipo_answer = None
+    q2_answer = None
+    q_ad_answer = None
+    q2_1_answer = None
+    q2_2_answer = None
+    acentos_tipo_answer = None
+    keke_acentos_subtipo_answer = None
+    galleta_acentos_subtipo_answer = None
 
-# Advertencia real solo si dijeron que sí
-if q1_answer == 'Sí':
-    st.markdown("""
-    <div style="margin-top: 25px; padding: 20px; background-color: #ffebee; border: 2px solid #b71c1c; border-radius: 15px;">
-        <h4 style="color: #b71c1c;">🚨 Advertencia importante</h4>
-        <p style="color: #5d4037; font-size: 17px;">
-            Todos los productos contienen lactosa.<br>
-            <strong>No son aptos para personas veganas ni diabéticas.</strong>
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    # Advertencia real solo si dijeron que sí
+    if q1_answer == 'Sí':
+        st.markdown("""
+        <div style="margin-top: 25px; padding: 20px; background-color: #ffebee; border: 2px solid #b71c1c; border-radius: 15px;">
+            <h4 style="color: #b71c1c;">🚨 Advertencia importante</h4>
+            <p style="color: #5d4037; font-size: 17px;">
+                Todos los productos contienen lactosa.<br>
+                <strong>No son aptos para personas veganas ni diabéticas.</strong>
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
     # Question 2 (only if Q1 is 'Sí')
     q2_answer = st.radio(
