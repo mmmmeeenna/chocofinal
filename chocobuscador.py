@@ -13,14 +13,22 @@ st.markdown("""
         font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
     }
 
+    /* Contenedor padre del banner y título */
+    .header-wrapper {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        margin-bottom: 40px;
+    }
+
     /* Franja superior con imagen decorativa */
     .top-banner {
         background-image: url('https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/FONDO.png');
         background-size: cover;
         background-position: center;
-        height: 180px;
+        width: 100%;
+        height: 100%;
         border-bottom: 6px solid #6d4c41;
-    }
 
     /* Contenedor para el título encima del banner */
     .banner-title-box {
@@ -100,14 +108,13 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Franja decorativa superior
-st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
-
-# Título encima de la franja
 st.markdown("""
-<div class="banner-title-box">
-    <div class="banner-title-content">
-        Buscador de Chocolates 🍫
+<div class="header-wrapper">
+    <div class="top-banner"></div>
+    <div class="banner-title-box">
+        <div class="banner-title-content">
+            Buscador de Chocolates 🍫
+        </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
