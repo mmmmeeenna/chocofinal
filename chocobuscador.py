@@ -17,7 +17,7 @@ st.markdown("""
 
     /* Franja superior con imagen decorativa */
     .top-banner {
-        background-image: url('https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/FONDO.png');
+        background-image: url('https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/fondo%20con%20fondo.png');
         background-size: cover;
         background-position: center;
         height: 180px;
@@ -82,60 +82,58 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Cargar y preparar los datos
+
 @st.cache_data
 def load_data():
     """Loads and transforms the chocolate and store dataframes."""
-    # Load the dataframes
-    # Asegúrate de que estos archivos ('chocodata_revisada.xlsx' y 'chocotiendas.xlsx')
-    # estén en el mismo directorio que tu script de Streamlit o proporciona la ruta completa.
+    #Se cargan las bases de datos en Excel 
     try:
         chocoframe = pd.read_excel('chocodata_revisada.xlsx')
         chocotiendas = pd.read_excel('chocotiendas.xlsx')
     except FileNotFoundError:
         st.error("Asegúrate de que 'chocodata_revisada.xlsx' y 'chocotiendas.xlsx' estén en el mismo directorio que el script.")
-        st.stop() # Detiene la ejecución de la aplicación si los archivos no se encuentran
+        st.stop() #Detiene la ejecución de la aplicación si los archivos no se encuentran
 
 
-    # Transform chocoframe data types
-    conv_booleanos = chocoframe.columns[1:16]
+    #Acá se transforman los datos según lo que se necesita 
+    conv_booleanos = chocoframe.columns[1:16] # Estas son las características, por eso las convierto a booleanos para luego poder analizarlas 
     chocoframe[conv_booleanos] = chocoframe[conv_booleanos].astype(bool)
 
-    conv_float = chocoframe.columns[16:31]
+    conv_float = chocoframe.columns[16:31] #Estos valores son los precios los convierto a float para compararlos, tal vez en un futuro añada esta opción
     chocoframe[conv_float] = chocoframe[conv_float].apply(pd.to_numeric, errors='coerce').astype(float)
 
     conv_string = chocoframe.columns[31:34]
     chocoframe[conv_string] = chocoframe[conv_string].astype(str)
 
-    # Clean column names by stripping whitespace
+    # Clean column names by stripping whitespace (esto lo añadió la IA al traducirlo)
     chocoframe.columns = chocoframe.columns.str.strip()
     chocotiendas.columns = chocotiendas.columns.str.strip()
 
 
     return chocoframe, chocotiendas
     
-# Imagen decorativa en el sidebar
+#Añado una imagen para que se vea más atractivo
 st.sidebar.image(
     "https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/chocolates%20tres%20tipos.png",
     use_container_width=True
 )
 
-# Sidebar con navegación
+#Sidebar para poder navegar
 st.sidebar.title("Navegación")
-pages = ("Página 1: Buscador", "Página 2: Ámate con chocolate", "Página 3: Detrás del Chocolate")
+pages = ("Página 1: Buscador", "Página 2: Ámate con chocolate", "Página 3: Detrás del Chocolate") #Son tres páginas, la primera es el cuestionario y las demás recomendaciones
 selected_page = st.sidebar.radio("Ir a:", pages) 
 
 if selected_page == "Página 1: Buscador":
     chocoframe, chocotiendas = load_data()
 
-# Contenido de las páginas
+#Esta es para ir al cuestionario 
 if selected_page == "Página 1: Buscador":
     st.write("¡Encuentra tu chocolate ideal en el campus PUCP!")
 
-    # Franja decorativa superior
+    #Decoración
     st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
 
-    # Título principal después del banner
+    #Título principal después del banner
     st.markdown("""
     <div style='text-align: center; margin-top: 20px; margin-bottom: 10px;'>
         <h1 style='background-color: rgba(255, 255, 255, 0.9); 
@@ -151,7 +149,7 @@ if selected_page == "Página 1: Buscador":
     </div>
     """, unsafe_allow_html=True)
 
-    # Question 1
+    #Primera pregunta 
     with st.container():
         st.markdown("""
         <div style="text-align: center; margin-bottom: -10px;">
@@ -167,11 +165,11 @@ if selected_page == "Página 1: Buscador":
         """, unsafe_allow_html=True)    
 
     q1_answer = st.radio(
-        "¿Deseas comer chocolate?",
+        "¿Deseas comer chocolate?", #Esta es la pregunta que inicia o termina todo el programa 
         ('Sí', 'No'),
         index=0
     )
-    # Initialize variables for answers in different paths
+    #Estas son las variables en donde se almacenarán los datos, empiezan vacías
     q2_answer = None
     q_ad_answer = None
     q2_1_answer = None
@@ -180,7 +178,7 @@ if selected_page == "Página 1: Buscador":
     keke_acentos_subtipo_answer = None
     galleta_acentos_subtipo_answer = None
 
-    # Advertencia real solo si dijeron que sí
+    #Advertencia real solo si dijeron que sí en la primera pregunta
     if q1_answer == 'Sí':
         st.markdown("""
         <div style="margin-top: 25px; padding: 20px; background-color: #ffebee; border: 2px solid #b71c1c; border-radius: 15px;">
@@ -192,35 +190,35 @@ if selected_page == "Página 1: Buscador":
         </div>
         """, unsafe_allow_html=True)
 
-    # Question 2 (only if Q1 is 'Sí')
+    #Pregunta 2 (solo si la Q1 es 'Sí')
         q2_answer = st.radio(
             "¿Deseas comer sólo chocolate (en barra o lentejitas), un derivado hecho en su mayoría de chocolate o un derivado con acentos de chocolate?",
             ('Solo de chocolate', 'Hecho en su mayoría de chocolate', 'Con acentos de chocolate')
-        )
+        )#Aquí preguntamos específicamente que cantidad de chocolate se desea consumir 
 
-        # Question path based on Q2 answer
+        #Aquí, si se ha respondido "Solo de chocolate" se responde con la pregunta sobre el contenido de esa barra o lentejita de chocolate
     if q2_answer == 'Solo de chocolate':
         q_ad_answer = st.radio(
             "¿Prefieres chocolates con maní o almendras?",
             ('Con maní', 'Sin maní', 'Con Almendras', 'Sin Almendras')
         )
 
-    # Subsequent question for "Solo de chocolate" path
+    # Luego de eso, se le preguntará qué tipo de chocolate prefiere
         q2_1_answer = st.radio(
             "¿Deseas comer chocolate con leche, blanco o puro (mayor porcentaje de cacao)?",
             ('Con leche', 'Blanco', 'Puro')
         )
 
-    elif q2_answer == 'Hecho en su mayoría de chocolate':
+    elif q2_answer == 'Hecho en su mayoría de chocolate': #Si se ha respondido que se quiere 'Hecho en su mayoría de chocolate' mostrará los formatos en los que se presentan los productos hechos en su mayoría de chocolate
         q2_2_answer = st.radio(
             "¿Cuál te llama más la atención: Galleta, Keke u otro postre?",
             ('Galleta', 'Keke', 'Otro postre')
-        )
+        ) 
 
-    elif q2_answer == 'Con acentos de chocolate':
+    elif q2_answer == 'Con acentos de chocolate': #Esta es la otra alternativa a la pregunta 2
         acentos_tipo_answer = st.radio(
             "¿Prefieres un keke o una galleta con acentos de chocolate?",
-            ('Keke', 'Galleta')
+            ('Keke', 'Galleta') #Se puede responder solo con estos formatos de alimento porque no hay un "postre" asignado pra 
         )
 
     # Subsequent questions based on acentos_tipo_answer
