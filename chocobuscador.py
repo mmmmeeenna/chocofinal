@@ -470,7 +470,7 @@ if q1_answer == 'Sí':
         else:
             st.info("Lo siento, no se encontraron productos que coincidan con todas tus preferencias.")
 
-elif selected_page == "Ámate con Chocolate":
+elif selected_page == "Página 2: Ámate con chocolate":
     # Franja decorativa superior
     st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
 
