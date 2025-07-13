@@ -119,11 +119,11 @@ st.sidebar.image(
     "https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/chocolates%20tres%20tipos.png",
     use_container_width=True
 )
-    
-# Estructurar la aplicación con un sidebar y definir las páginas
+
+# Sidebar con navegación
 st.sidebar.title("Navegación")
 pages = ("Página 1: Buscador", "Página 2: Ámate con chocolate", "Página 3: Detrás del Chocolate")
-selected_page = st.sidebar.radio("Ir a:", pages)
+selected_page = st.sidebar.radio("Ir a:", pages) 
 
 # Contenido de las páginas
 if selected_page == "Página 1: Buscador":
