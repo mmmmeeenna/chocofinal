@@ -26,7 +26,7 @@ st.markdown("""
 
     /* Estilo del sidebar */
     [data-testid="stSidebar"] {
-        background-color: #fff3e0;
+        background-color: #AD9682;
         background-image: linear-gradient(to bottom, #fff3e0, #fbe9e7);
         border-right: 3px dashed #4e342e;
         padding: 15px;
