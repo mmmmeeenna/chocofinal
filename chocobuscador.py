@@ -23,8 +23,10 @@ st.markdown("""
     }
 
     [data-testid="stSidebar"] {
-        background-color: #d7b49e;
-        border-right: 3px solid #6d4c41;
+        background-color: #fbe9e7;
+        background-image: linear-gradient(to bottom, #fbe9e7, #efebe9);
+        border-right: 3px dashed #6d4c41;
+        padding: 15px;
     }
 
     .glass-box {
@@ -109,6 +111,11 @@ def load_data():
 # Cargar los datos usando la función cacheada
 chocoframe, chocotiendas = load_data()
 
+# Imagen decorativa en el sidebar
+st.sidebar.image(
+    "https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/chocolates%20tres%20tipos.png",
+    use_column_width=True
+    
 # Estructurar la aplicación con un sidebar y definir las páginas
 st.sidebar.title("Navegación")
 pages = ("Página 1: Buscador", "Página 2", "Página 3")
