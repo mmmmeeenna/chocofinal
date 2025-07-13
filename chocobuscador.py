@@ -419,6 +419,9 @@ if selected_page == "Página 1: Buscador":
                     st.image(imagen_producto, width=320)
                 else:
                     st.markdown("<p style='text-align: center; color: #8d6e63;'>Imagen no disponible</p>", unsafe_allow_html=True)
+                
+                # Aquí cerramos el <div> que abrimos arriba
+                st.markdown("</div>", unsafe_allow_html=True)
 
                 # Precios disponibles
                 precio_columnas = current_filtered_frame.columns[16:31]
