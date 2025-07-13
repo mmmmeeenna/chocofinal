@@ -9,8 +9,8 @@ st.markdown("""
 <style>
     /* Fondo base blanco */
     .stApp {
-        background-color: #fff;
-        font-family: 'Comic Sans MS', cursive;
+        background-color: #fff8e1;;
+        font-family: 'Trebuchet MS', 'Comic Sans MS', cursive;
     }
 
     /* Franja superior con imagen */
@@ -23,9 +23,9 @@ st.markdown("""
     }
 
     [data-testid="stSidebar"] {
-        background-color: #fbe9e7;
-        background-image: linear-gradient(to bottom, #fbe9e7, #efebe9);
-        border-right: 3px dashed #6d4c41;
+        background-color: #fff3e0;
+        background-image: linear-gradient(to bottom, #fff3e0, #fbe9e7);
+        border-right: 3px dashed #4e342e;
         padding: 15px;
     }
 
@@ -40,7 +40,7 @@ st.markdown("""
     }
 
     h1 {
-        color: #3e2723;
+        color: #4e342e;
         font-size: 42px;
         text-shadow: 2px 2px 4px #fff;
         margin-bottom: 20px;
