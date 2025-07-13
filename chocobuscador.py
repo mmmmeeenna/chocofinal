@@ -55,7 +55,8 @@ st.markdown("""
     .pregunta {
         font-size: 26px;
         font-weight: bold;
-        color: #5d4037;
+        color: #5d4037 !important;  /* Forzamos el color */
+        background-color: transparent !important; /* por si algún fondo oscuro se cuela */
         margin: 30px 0 40px 0;
         text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
     }
