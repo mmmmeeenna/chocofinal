@@ -550,7 +550,7 @@ elif selected_page == "Página 3: Detrás del Chocolate":
     """, unsafe_allow_html=True)
 
     # Monstruito cocinero
-    st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/mounstro%20cocinando.png", width=180)
+    st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/mounstro%20cocinando%20cortado.png", width=180)
 
     # Primer video: Beneficios del chocolate
     st.markdown("## 🍫 Beneficios del chocolate para la salud")
