@@ -7,14 +7,19 @@ from streamlit_folium import st_folium # Importar st_folium
 # Aplicar estilo de blog con CSS
 st.markdown("""
 <style>
-    /* Espacio para futuras modificaciones visuales */
-
+    /* Fondo base blanco */
     .stApp {
+        background-color: #fff;
+        font-family: 'Comic Sans MS', cursive;
+    }
+
+    /* Franja superior con imagen */
+    .top-banner {
         background-image: url('https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/FONDO.png');
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
-        font-family: 'Comic Sans MS', cursive;
+        height: 180px;
+        border-bottom: 6px solid #6d4c41;
     }
 
     [data-testid="stSidebar"] {
@@ -23,7 +28,7 @@ st.markdown("""
     }
 
     .glass-box {
-        background-color: rgba(255, 255, 255, 0.88);
+        background-color: rgba(255, 255, 255, 0.92);
         padding: 60px 40px 50px 40px;
         border-radius: 25px;
         margin: 60px auto;
@@ -60,15 +65,14 @@ st.markdown("""
         transition: all 0.3s ease;
     }
 
-
     .stButton>button:hover {
         background-color: #8d6e63;
         transform: scale(1.05);
     }
-
 </style>
-""", unsafe_allow_html=True)
 
+<div class="top-banner"></div>
+""", unsafe_allow_html=True) 
 
 # Cargar y preparar los datos
 @st.cache_data
