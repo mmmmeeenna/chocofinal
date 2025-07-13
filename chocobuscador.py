@@ -122,7 +122,7 @@ st.sidebar.image(
     
 # Estructurar la aplicación con un sidebar y definir las páginas
 st.sidebar.title("Navegación")
-pages = ("Página 1: Buscador", "Página 2: Ámate con chocolate", "Página 3")
+pages = ("Página 1: Buscador", "Página 2: Ámate con chocolate", "Página 3: Detrás del Chocolate")
 selected_page = st.sidebar.radio("Ir a:", pages)
 
 # Contenido de las páginas
@@ -529,7 +529,55 @@ elif selected_page == "Página 2: Ámate con chocolate":
         st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/chocolatito.png", caption="Chocolate en barra", use_container_width=True)
 
 
-elif selected_page == "Página 3":
-    st.title("Página 3")
-    st.title("Página 3")
-    st.write("Este es el contenido de la página 3. Puedes añadir más elementos aquí.")
+elif selected_page == "Página 3: Detrás del Chocolate":
+    # Franja decorativa superior
+    st.markdown('<div class="top-banner"></div>', unsafe_allow_html=True)
+
+    # Título bonito con fondo blanco transparente
+    st.markdown("""
+    <div style='text-align: center; margin-top: 20px;'>
+        <h1 style='background-color: rgba(255, 255, 255, 0.9); 
+                   display: inline-block; 
+                   padding: 15px 35px; 
+                   border-radius: 15px; 
+                   box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+                   color: #4e342e; 
+                   font-family: "Trebuchet MS", "Comic Sans MS", cursive;
+                   font-size: 38px;'>
+            🎬 Videos: El chocolate en tu vida
+        </h1>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Monstruito cocinero
+    st.image("https://raw.githubusercontent.com/mmmmeeenna/chocofinal/refs/heads/main/images/mounstro%20cocinando.png", width=180)
+
+    # Primer video: Beneficios del chocolate
+    st.markdown("## 🍫 Beneficios del chocolate para la salud")
+    st.video("https://www.youtube.com/watch?v=Lcw29cUuYSc")
+    st.markdown("""
+    <div style='background-color: rgba(255,255,255,0.92); padding: 20px; border-radius: 15px;'>
+        <p style='font-size: 18px; color: #5d4037;'>
+            En este video, el doctor <strong>Francisco Villarreal</strong> nos explica cómo el chocolate puede beneficiar nuestra salud. 
+            Desde su laboratorio en la Universidad de San Diego, investiga las propiedades del cacao y su impacto positivo en el cuerpo humano.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Segundo video: Cómo se hace el chocolate
+    st.markdown("## 🏭 ¿Cómo se hace el chocolate?")
+    st.video("https://www.youtube.com/watch?v=J9G94d9QK08")
+    st.markdown("""
+    <div style='background-color: rgba(255,255,255,0.92); padding: 20px; border-radius: 15px;'>
+        <p style='font-size: 18px; color: #5d4037;'>
+            ¿Alguna vez te has preguntado cómo se elabora el chocolate que comes? Este video nos lleva detrás de cámaras para mostrar todo el proceso, 
+            desde la <strong>selección y mezcla de granos</strong> hasta el <strong>tueste, descascarillado y trituración</strong>.
+        </p>
+        <ul style='font-size: 16px; color: #4e342e;'>
+            <li><strong>Selección de granos:</strong> por calidad, aroma y origen.</li>
+            <li><strong>Tueste:</strong> desarrollo de sabor y aroma mediante calor controlado.</li>
+            <li><strong>Descascarillado y trituración:</strong> se obtiene el licor de cacao.</li>
+        </ul>
+        <p style='font-size: 16px; color: #6d4c41;'>¡Una mirada completa al arte de hacer chocolate! 🍫</p>
+    </div>
+    """, unsafe_allow_html=True)
