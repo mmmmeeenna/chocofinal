@@ -133,15 +133,14 @@ q1_answer = st.radio(
     ('Sí', 'No'),
     index=0
 )
-
     # Initialize variables for answers in different paths
-    q2_answer = None
-    q_ad_answer = None
-    q2_1_answer = None
-    q2_2_answer = None
-    acentos_tipo_answer = None
-    keke_acentos_subtipo_answer = None
-    galleta_acentos_subtipo_answer = None
+q2_answer = None
+q_ad_answer = None
+q2_1_answer = None
+q2_2_answer = None
+acentos_tipo_answer = None
+keke_acentos_subtipo_answer = None
+galleta_acentos_subtipo_answer = None
 
 # Advertencia real solo si dijeron que sí
 if q1_answer == 'Sí':
