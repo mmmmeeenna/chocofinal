@@ -400,28 +400,24 @@ if selected_page == "Página 1: Buscador":
             for index, row in current_filtered_frame.iterrows():
                 nombre_producto = row["producto"]
                 imagen_producto = row["Foto"]
-    
-            # Tarjeta del producto completa
-                st.markdown(f"""
-            <div style='background-color: rgba(255, 255, 255, 0.95); 
-                        padding: 25px; 
-                        margin: 30px 0; 
-                        border-radius: 20px; 
-                        box-shadow: 0 4px 15px rgba(0,0,0,0.15);'>
 
-                <h3 style='color: #4e342e; font-family: "Trebuchet MS", "Comic Sans MS", cursive; text-align: center;'>
-                    🍫 {nombre_producto}
-                </h3>
-            """, unsafe_allow_html=True)
+                # Inicia tarjeta de producto
+                st.markdown(f"""
+                <div style='background-color: rgba(255, 255, 255, 0.95); 
+                            padding: 25px; 
+                            margin: 30px 0; 
+                            border-radius: 20px; 
+                            box-shadow: 0 4px 15px rgba(0,0,0,0.15);'>
+                    <h3 style='color: #4e342e; font-family: "Trebuchet MS", "Comic Sans MS", cursive; text-align: center;'>
+                        🍫 {nombre_producto}
+                    </h3>
+                """, unsafe_allow_html=True)
 
                 # Imagen del producto
                 if pd.notna(imagen_producto) and isinstance(imagen_producto, str):
                     st.image(imagen_producto, width=320)
                 else:
                     st.markdown("<p style='text-align: center; color: #8d6e63;'>Imagen no disponible</p>", unsafe_allow_html=True)
-                
-                # Aquí cerramos el <div> que abrimos arriba
-                st.markdown("</div>", unsafe_allow_html=True)
 
                 # Precios disponibles
                 precio_columnas = current_filtered_frame.columns[16:31]
@@ -437,16 +433,17 @@ if selected_page == "Página 1: Buscador":
                         <p style='font-size: 18px; font-weight: bold; color: #6d4c41;'>Precios disponibles:</p>
                         {precios_html}
                     </div>
-                    </div> <!-- Fin de tarjeta -->
+                    </div> <!-- cierre tarjeta -->
                     """, unsafe_allow_html=True)
                 else:
                     st.markdown("""
                     <div style='margin-top: 15px; color:#8d6e63; font-size:16px;'>No se encontraron precios disponibles para este producto.</div>
-                    </div> <!-- Fin de tarjeta -->
+                    </div> <!-- cierre tarjeta -->
                     """, unsafe_allow_html=True)
 
-                # Separador entre tarjetas (opcional)
+                # Línea divisoria
                 st.markdown("<hr style='border: none; height: 1px; background-color: #ccc;'>", unsafe_allow_html=True)
+
 
 
 
