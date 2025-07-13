@@ -3,3 +3,5 @@ openpyxl
 ipython
 ipywidgets
 folium
+streamlit
+streamlit-folium
